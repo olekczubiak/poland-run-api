@@ -3,3 +3,6 @@
 
 #Secret stuff
 /.env
+
+# venv
+/fastAPI
