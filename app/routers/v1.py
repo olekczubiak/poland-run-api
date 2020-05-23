@@ -1,8 +1,8 @@
 '''
-api.routers.v1.py
+app.routers.v1.py
 '''
 from fastapi import APIRouter
-
+from ..db.crud import get_all_events
 # from fastapi import HTTPException, status
 
 V1 = APIRouter()
@@ -19,7 +19,7 @@ async def run_archive():
 
 @V1.get("/events")
 async def all_events(page: int = 0, per_page: int = 10):
-    pass
+    return get_all_events()
 
 @V1.get("/events/{month}")
 async def months_events(month:int):

@@ -1,5 +1,8 @@
-import queries
+'''
+app.db.crud.py
+'''
+from .queries import GET_ALL_EVENTS
 from .database import query
 
-async def get_all_events():
-    return query(queries.GET_ALL_EVENTS).fetchall()
+def get_all_events():
+    return query(GET_ALL_EVENTS).fetchall()
