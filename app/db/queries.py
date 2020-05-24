@@ -4,12 +4,33 @@ app.db.queries.py
 
 GET_ALL_EVENTS = '''
             SELECT *
-            FROM events'''
+            FROM running_events'''
 
-ALL_EVENTS_FROM_TODAY= '''
+ALL_EVENTS_FROM_TODAY = '''
             SELECT *
-            FROM events
-            WHERE TIME > :now
-            ORDER BY TIME'''
+            FROM running_events
+            WHERE Time > :now
+            ORDER BY Time
+            LIMIT :limit
+            OFFSET :offset
+'''
+
+FIND_EVENTS_BY_DISTANCE = '''
+            SELECT *
+            FROM running_events
+            WHERE Distance == :distance
+            ORDER BY Time'''
+
+ARCHIVED_EVENTS = '''
+            SELECT *
+            FROM running_events
+            WHERE Time < :now
+            ORDER BY Time DESC'''
+
+FIND_EVENTS_BY_CITY = '''
+            SELECT *
+            FROM running_events
+            WHERE Place == :pol_city
+            ORDER BY Time'''
 
 
