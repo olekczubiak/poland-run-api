@@ -14,7 +14,7 @@ async def root():
     return{"message": "Hello, welcome on main page, type /docs to see swagger"}
 
 
-@V1.get("/new")
+@V1.get("/main")
 async def events(per_page: int = 10, page: int = 0):
     '''Shows all running events from today with page and per_page'''
     return get_events(per_page, page)
@@ -30,10 +30,11 @@ async def all_events():
 
 
 @V1.get("/events")
-async def city_events(*, city: str):
+async def city_events(*, city: str = "Warszawa"):
     '''shows all running events by city'''
-    # if not city:
-    #     return get_events()
+    if not get_city_events(city):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="City not found")
     return get_city_events(city)
 
 @V1.get("/distance/{dist}")

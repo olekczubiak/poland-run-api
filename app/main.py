@@ -7,8 +7,7 @@ from .routers import V1
 app = FastAPI(
 	title="Poland Running Api",
 	description=(
-		"API who shows Poland running events"
-		"Page : ..."
+		"Api, which shows running events in Poland"
 	),
 	version="0.0",
 	docs_url="/docs",
