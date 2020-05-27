@@ -2,8 +2,8 @@
 app.db.crud.py
 '''
 from .queries import (GET_ALL_EVENTS, ALL_EVENTS_FROM_TODAY, 
-                    FIND_EVENTS_BY_DISTANCE, ARCHIVED_EVENTS, 
-                    FIND_EVENTS_BY_CITY)
+                    FIND_EVENTS_BY_DISTANCE, ARCHIVED_EVENTS,
+                    FIND_EVENTS_BY_CITY_MONTH)
 from .database import query
 import datetime
 
@@ -23,5 +23,5 @@ def get_events_by_distance(dist):
 def get_archived_events():
     return query(ARCHIVED_EVENTS, {'now': TODAY_DATE}).fetchall()
 
-def get_city_events(city):
-    return query(FIND_EVENTS_BY_CITY, {'pol_city': city}).fetchall()
+def get_city_month_events(city, month):
+    return query(FIND_EVENTS_BY_CITY_MONTH, {'pol_city': city, 'month': month}).fetchall()

@@ -3,8 +3,10 @@ app.routers.v1.py
 '''
 from fastapi import APIRouter
 from ..db.crud import (get_all_events, get_events, get_events_by_distance, 
-                    get_archived_events, get_city_events)
+                    get_archived_events,
+                    get_city_month_events)
 from fastapi import HTTPException, status
+
 
 V1 = APIRouter()
 
@@ -24,18 +26,12 @@ async def all_events():
     '''Show all events from today'''
     return get_all_events()
 
-# @V1.get("/events/{month}")
-# async def months_events(month: str):
-#     return{"message": "List of all running events division into months"}
-
-
 @V1.get("/events")
-async def city_events(*, city: str = "Warszawa"):
-    '''shows all running events by city'''
-    if not get_city_events(city):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail="City not found")
-    return get_city_events(city)
+async def months_events(city: str = None ,month: str = None):
+    # if not get_city_month_events(city, month):
+    #     raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Not Found")
+    return get_city_month_events(city, month)
+
 
 @V1.get("/distance/{dist}")
 async def distance_events(dist: str):
