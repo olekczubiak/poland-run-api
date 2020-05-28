@@ -2,10 +2,13 @@
 app.routers.v1.py
 '''
 from fastapi import APIRouter
+from fastapi import HTTPException, status
+
+
+
 from ..db.crud import (get_all_events, get_events, get_events_by_distance, 
                     get_archived_events,
                     get_city_month_events)
-from fastapi import HTTPException, status
 
 
 V1 = APIRouter()
@@ -27,9 +30,10 @@ async def all_events():
     return get_all_events()
 
 @V1.get("/events")
-async def months_events(city: str = None ,month: str = None):
-    # if not get_city_month_events(city, month):
-    #     raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Not Found")
+async def months_events(city: str ,month: str):
+    '''Shows events by city and month'''
+    if not get_city_month_events(city, month):
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Not Found")
     return get_city_month_events(city, month)
 
 

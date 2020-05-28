@@ -1,11 +1,13 @@
 '''
 app.db.crud.py
 '''
+import datetime
+
 from .queries import (GET_ALL_EVENTS, ALL_EVENTS_FROM_TODAY, 
                     FIND_EVENTS_BY_DISTANCE, ARCHIVED_EVENTS,
                     FIND_EVENTS_BY_CITY_MONTH)
 from .database import query
-import datetime
+
 
 TODAY_DATE = datetime.date.today()
 

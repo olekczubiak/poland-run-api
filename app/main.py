@@ -2,6 +2,7 @@
 app.main.py
 '''
 from fastapi import FastAPI
+
 from .routers import V1
 
 app = FastAPI(

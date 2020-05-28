@@ -48,5 +48,3 @@ FIND_EVENTS_BY_CITY_MONTH = '''
                 Place == :pol_city AND strftime ('%m', Time) = :month
             ORDER BY Time
 '''
-
-

@@ -9,3 +9,7 @@ class Event(BaseModel):
     website: str = None
     place: str = None
     distance: str = None
+
+class EventParams(BaseModel):
+    city: str
+    month: str
