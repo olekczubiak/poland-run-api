@@ -5,7 +5,8 @@ import datetime
 
 from .queries import (GET_ALL_EVENTS, ALL_EVENTS_FROM_TODAY, 
                     FIND_EVENTS_BY_DISTANCE, ARCHIVED_EVENTS,
-                    FIND_EVENTS_BY_CITY_MONTH)
+                    FIND_EVENTS_BY_CITY_MONTH, ADD_NEW_EVENT,
+                    CHECK_IF_EVENT_EXISTS)
 from .database import query
 
 
@@ -27,3 +28,12 @@ def get_archived_events():
 
 def get_city_month_events(city, month):
     return query(FIND_EVENTS_BY_CITY_MONTH, {'pol_city': city, 'month': month}).fetchall()
+
+def add_new_event(title, time, website, place, distance, author):
+    return query(ADD_NEW_EVENT, {'title': title, 'time': time, 
+                                'website': website, 'place': place, 
+                                'distance': distance, 'author': author})
+
+
+def check_added_event(EventName):
+    return query(CHECK_IF_EVENT_EXISTS, {'title': EventName})

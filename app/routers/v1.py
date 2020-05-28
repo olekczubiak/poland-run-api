@@ -5,10 +5,13 @@ from fastapi import APIRouter
 from fastapi import HTTPException, status
 
 
-
+from ..models import AddEvent
 from ..db.crud import (get_all_events, get_events, get_events_by_distance, 
                     get_archived_events,
-                    get_city_month_events)
+                    get_city_month_events,
+                    add_new_event ,
+                    check_added_event)
+
 
 
 V1 = APIRouter()
@@ -50,3 +53,13 @@ async def run_archive():
     '''Shows archive of all running events'''
     return get_archived_events()
 
+@V1.post("/event", status_code=status.HTTP_201_CREATED)
+async def new_event(event: AddEvent):
+    data = check_added_event(event.title)
+    if data:
+        local_new_event = add_new_event(event.title, event.time, 
+                                        event.website, event.place, 
+                                        event.distance, event.author).lastrowid
+        return add_new_event(local_new_event)
+    else:
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail='NOT FOUND')

@@ -48,3 +48,15 @@ FIND_EVENTS_BY_CITY_MONTH = '''
                 Place == :pol_city AND strftime ('%m', Time) = :month
             ORDER BY Time
 '''
+ADD_NEW_EVENT = '''
+            INSERT INTO add_events (Title, Time, Website, Place, Distance, Author)
+                VALUES ( :title, :time, :website, :place, :distance, :author)
+'''
+
+CHECK_IF_EVENT_EXISTS = '''
+            SELECT
+                *
+            FROM 
+                add_events
+            WHERE
+                Title = :title'''
