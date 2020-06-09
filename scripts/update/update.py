@@ -3,10 +3,6 @@ import sqlite3
 
 from search import append_events, name, time, distance, place, website
 
-##pprint for debug
-# import pprint
-# pp = pprint.PrettyPrinter(indent=4)
-
 def open_func(*args):
     for file_name in args:
         append_events(file_name)
@@ -19,9 +15,6 @@ def html_files(number_of_files):
 
 if __name__ == "__main__":
     html_files(16)
-    # pp.pprint(time)
-    # print(f'Number of downloaded items {len(time)}')
-
     try:
         
         sqliteConnection = sqlite3.connect(os.path.realpath('/Users/olek/Documents/dev/RunApi/events.db'))

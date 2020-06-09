@@ -34,7 +34,7 @@ async def all_events():
 
 @V1.get("/events")
 async def months_events(city: str ,month: str):
-    '''Shows events by city and month'''
+    '''Shows events by city and month in the current year'''
     if not get_city_month_events(city, month):
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Not Found")
     return get_city_month_events(city, month)

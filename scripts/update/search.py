@@ -33,7 +33,6 @@ def append_events(example):
             # append_to_list(website, website_addr)
             website.append(website_addr)
         append_to_list(place, element_01.find_all("td", {"class": "location"}))
-
         append_to_list(time, element_02.find_all("td", {"class": "dtstart"}))
         append_to_list(name, element_02.find_all("a", {"class": "url summary"}))
         append_to_list(distance, element_02.find_all("td", {"class": "distance"}))
