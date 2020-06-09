@@ -55,11 +55,8 @@ async def run_archive():
 
 @V1.post("/event", status_code=status.HTTP_201_CREATED)
 async def new_event(event: AddEvent):
-    data = check_added_event(event.title)
-    if data:
-        local_new_event = add_new_event(event.title, event.time, 
-                                        event.website, event.place, 
-                                        event.distance, event.author).lastrowid
-        return add_new_event(local_new_event)
-    else:
-        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail='NOT FOUND')
+    local_new_event = add_new_event(event.title, event.time, 
+                                    event.website, event.place, 
+                                    event.distance, event.author)
+    event_lastrowid = local_new_event.lastrowid
+    return check_added_event(event_lastrowid)

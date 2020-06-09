@@ -15,7 +15,6 @@ TODAY_DATE = datetime.date.today()
 
 def get_events(per_page, page):
     return query(ALL_EVENTS_FROM_TODAY, {'now': TODAY_DATE, 'limit': per_page, 'offset': page * per_page}).fetchall()
-    #add here page and per_page
 
 def get_all_events():
     return query(GET_ALL_EVENTS).fetchall()

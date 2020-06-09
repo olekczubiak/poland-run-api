@@ -1,8 +1,9 @@
 '''
 app.db.database.py
 '''
-SQL_DATABASE_ADDRESS="events.db"
 import sqlite3
+
+SQL_DATABASE_ADDRESS="events.db"
 
 
 def query(query: str, params=None):
