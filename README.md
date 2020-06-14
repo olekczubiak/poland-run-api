@@ -8,6 +8,7 @@ REST API with running events in poland. Write in FastApi.
 
 #### Swagger"
 '/docs' - documentation with list of endpoints. You can see it in heroku website.
+https://polish-running-events.herokuapp.com/docs
 
 #### Todo:
 * Write README
